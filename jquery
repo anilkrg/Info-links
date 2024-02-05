@@ -1,0 +1,66 @@
+
+$(document).ready(function () {
+    $.validator.addMethod("emiolregex", function (value) {
+        return  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i.test(value);
+    }, "Please enter a valid email address!");
+
+    $.validator.addMethod("passreg", function (value) {
+        return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) && /[a-z]/.test(value) && /\d/.test(value) && /[A-Z]/.test(value);
+    }, "Password should be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number");
+
+    $("#SignupFrm").validate(
+        {
+            rules:
+            {
+
+                'name': {
+                    required: true,
+                    minlength: 1
+
+                },
+
+                'email': {
+                    required: true,
+                    email: true,
+                    emiolregex: true
+                },
+                'phone': {
+                    required: true,
+                    /*phone_regex: true,*/
+                    minlength: 10
+                },
+                'password': {
+                    required: true,
+                    passreg: true,
+                    minlength: 8
+
+                },
+                'confirmpassword': {
+                    equalTo: '#password'
+                }
+            },
+            messages:
+            {
+
+                'name': {
+                    required: "The lastname field is mandatory!",
+                },
+                'email': {
+                    required: "The Email is required!",
+                    email: "Please enter a valid email address!"
+                    
+                },
+                'phone': {
+                    required: "The phone field is mandatory!",
+                },
+                'password': {
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 8 characters long"
+                },
+                'confirmpassword': {
+                    equalTo: "The two passwords do not match!"
+                },
+            }
+        });
+});
+
