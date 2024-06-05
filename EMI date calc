@@ -11,3 +11,30 @@ DateTime today = DateTime.Today;
         // Calculate the maturity date
         DateTime maturityDate = today.AddDays(totalDays);
         Console.WriteLine("Maturity Date: " + maturityDate.ToString("d"));
+
+
+
+
+
+
+
+
+
+
+
+DateTime startDate = new DateTime(2024, 6, 7);
+        int numberOfInstallments = 5;
+        decimal paymentAmount = 10000m;
+
+        Console.WriteLine("Installment Dates and Payments:");
+        for (int i = 0; i < numberOfInstallments; i++)
+        {
+            DateTime installmentDate = startDate.AddMonths(i);
+            Console.WriteLine($"Installment {i + 1}: {installmentDate.ToShortDateString()} - Amount: {paymentAmount:C}");
+        }
+
+        // Calculate maturity date
+        DateTime maturityDate = startDate.AddMonths(numberOfInstallments - 1);
+        Console.WriteLine($"\nMaturity Date: {maturityDate.ToShortDateString()}");
+
+        Console.ReadLine();
