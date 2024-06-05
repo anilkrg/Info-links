@@ -1,0 +1,13 @@
+DateTime today = DateTime.Today;
+        Console.WriteLine("Today's Date: " + today.ToString("d"));
+
+        // Number of EMIs
+        int emiCount = 5;
+        // Days between each installment
+        int daysBetweenEmis = 30;
+        // Total days until maturity
+        int totalDays = emiCount * daysBetweenEmis;
+
+        // Calculate the maturity date
+        DateTime maturityDate = today.AddDays(totalDays);
+        Console.WriteLine("Maturity Date: " + maturityDate.ToString("d"));
