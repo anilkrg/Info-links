@@ -1,40 +1,56 @@
-DateTime today = DateTime.Today;
-        Console.WriteLine("Today's Date: " + today.ToString("d"));
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-        // Number of EMIs
-        int emiCount = 5;
-        // Days between each installment
-        int daysBetweenEmis = 30;
-        // Total days until maturity
-        int totalDays = emiCount * daysBetweenEmis;
+namespace ConsoleApp1
+{
 
-        // Calculate the maturity date
-        DateTime maturityDate = today.AddDays(totalDays);
-        Console.WriteLine("Maturity Date: " + maturityDate.ToString("d"));
+    public class Product
+    {
+        public int Id { get; set; }
+        public int Quantity { get; set; }
+        public int Price { get; set; }
+        public int TotalAmt { get; set; }
+        public string Desc { get; set; }
 
-
-
-
-
-
-
-
-
-
-
-DateTime startDate = new DateTime(2024, 6, 7);
-        int numberOfInstallments = 5;
-        decimal paymentAmount = 10000m;
-
-        Console.WriteLine("Installment Dates and Payments:");
-        for (int i = 0; i < numberOfInstallments; i++)
+        public Product(int id, int quantity, int price, string desc)
         {
-            DateTime installmentDate = startDate.AddMonths(i);
-            Console.WriteLine($"Installment {i + 1}: {installmentDate.ToShortDateString()} - Amount: {paymentAmount:C}");
+            Id = id;
+            Quantity = quantity;
+            Price = price;
+            TotalAmt = quantity * price;
+            Desc = desc;
         }
+    }
 
-        // Calculate maturity date
-        DateTime maturityDate = startDate.AddMonths(numberOfInstallments - 1);
-        Console.WriteLine($"\nMaturity Date: {maturityDate.ToShortDateString()}");
+    public class Program
+    {
 
-        Console.ReadLine();
+
+        static void Main(string[] args)
+        {
+            List<Product> products = new List<Product>
+            {
+
+
+          new Product(1, 10, 50, "Product 1 Description"),
+            new Product(2, 5, 100, "Product 2 Description"),
+            new Product(3, 20, 30, "Product 3 Description"),
+            //new Product(4, 7, 200, "Product 4 Description"),
+            //new Product(5, 15, 10, "Product 5 Description"),
+            //new Product(6, 3, 500, "Product 6 Description")
+            };
+
+
+
+            for (int i = 0; i < products.Count; i++)
+            {
+                Product product = products[i];
+                Console.WriteLine($"Id{i + 1}: {product.Id}, Quantity{i + 1}: {product.Quantity}, Price{i + 1}: {product.Price}, TotalAmt{i + 1}: {product.TotalAmt}, Desc{i + 1}: {product.Desc}");
+            }
+            Console.ReadKey();
+        }
+    }
+}
